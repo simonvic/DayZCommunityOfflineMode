@@ -123,4 +123,42 @@ class CommunityOfflineClient extends MissionGameplay
         weather.SetWindMaximumSpeed( 50 );
         weather.SetWindFunctionParams( 0, 0, 1 );
     }
+	
+	override void OnKeyPress( int key )
+	{
+		super.OnKeyPress(key);
+		
+		if (!GetUIManager().GetMenu()){
+			if ( key == KeyCode.KC_M){
+				
+				Object physicsObj = GetGame().CreateObject( "Apple", GetGame().GetPlayer().GetPosition() + "1 2 0" );
+				if ( physicsObj == NULL ) return;
+				
+				dBodyDestroy( physicsObj );
+				
+				autoptr PhysicsGeomDef geoms[] = {PhysicsGeomDef("", dGeomCreateSphere( 0.1 ), "material/default", 0xffffffff)};
+				dBodyCreateDynamicEx( physicsObj , "0 0 0", 1.0, geoms );
+			}
+			
+			
+			PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+			if ( key == KeyCode.KC_H){
+				
+				player.SetLifeSpanStateVisible(0);				
+			}
+			if ( key == KeyCode.KC_J){
+				
+				player.SetLifeSpanStateVisible(1);				
+			}
+			if ( key == KeyCode.KC_K){
+				
+				player.SetLifeSpanStateVisible(2);				
+			}
+			if ( key == KeyCode.KC_L){
+				
+				player.SetLifeSpanStateVisible(3);				
+			}
+			
+		}
+	}
 };

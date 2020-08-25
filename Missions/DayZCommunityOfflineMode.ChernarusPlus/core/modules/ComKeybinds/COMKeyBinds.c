@@ -39,14 +39,14 @@ class COMKeyBinds extends Module
 //        KeyMouseBinding keyFrame        = new KeyMouseBinding( GetModuleType() , "OpenKeyframe"  ,  "Toggle dayz dev cinematic tool." );
         KeyMouseBinding closeMenu       = new KeyMouseBinding( GetModuleType() , "CloseOpenMenu" ,  "Close the menu on esc.", true    );
 
-		toggleCursor   .AddBinding( "kU" );
-		toggleCOMEditor.AddBinding( "kY" );
-		teleport       .AddBinding( "kEnd" );
+		toggleCursor   .AddBinding( "kY" );
+		toggleCOMEditor.AddBinding( "kU" );
+		teleport       .AddBinding( "kNumPad5" );
 		reload         .AddBinding( "kR" );
         spawnZ         .AddBinding( "kO" );
         hideHud        .AddBinding( "kHome" );
         printPlayer    .AddBinding( "kP" );
-        autoRun        .AddBinding( "kX" );
+        autoRun        .AddBinding( "kNumPad7" );
 //        keyFrame       .AddBinding( "kPrior" );
         closeMenu      .AddBinding( "kEscape" );
 
