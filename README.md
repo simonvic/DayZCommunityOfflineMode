@@ -1,4 +1,4 @@
-# DayZCommunityOfflineMode 3.4
+# DayZCommunityOfflineMode 3.5-s
 
 **Thank you for over 60.000 downloads!**  
 
@@ -22,18 +22,18 @@ To unstinstall this mod, simple delete all downloaded files, and rename your .di
 You might delete your whole ```Missions``` folder and validate your game files via steam to get the original DayZ files back.
 
 # Controls:
-* Y (Z for QWERTZ-Keyboard) - Open the COM toolbar menu.
-* X - Toggle Autojog/walk/run
-* X + SHIFT - Enable Autorun (Just X to disable it again)
-* X + CTRL - Enable Autowalk (Just X to disable it again)
-* END - Teleport at the position you are looking at
+* U - Open the COM toolbar menu.
+* Numpad 7 - Toggle Autojog/walk/run
+* Numpad 7 + SHIFT - Enable Autorun (Just X to disable it again)
+* Numpad 7 + CTRL - Enable Autowalk (Just X to disable it again)
+* Numpad 5 - Teleport at the position you are looking at
 * O - Spawn a random infected (Zombies)
 * O + CTRL - Spawn a wolf (Agressive and will fight both players and infected)
 * O + SHIFT - Spawn a random animal
 * R - Reload the weapon and refill the ammo (Infinite ammo)
 * P - Display your current position in the chat and print it to your logfiles (See logfiles section for their location)
 * B - Toggle debug monitor
-* INSERT - Toggle free camera. This teleports your player to the position you looked at when turning it off
+* Numpad 1 - Toggle free camera. This teleports *does not* your player to the position you looked at when turning it off
 
 # Object Editor Controls:  
 * Click objects to select them.  
@@ -64,6 +64,7 @@ You find your logfiles here: ```Press WINDOWS + R  -> Type in %localappdata%/Day
 * [Arkensor](https://github.com/Arkensor)
 * [DannyDog](https://github.com/DannyDog)
 * [Jacob_Mango](https://github.com/Jacob-Mango)
+* [simonvic](https://github.com/simonvic)
 
 # Contributors:
 * [gallexme](https://github.com/gallexme) - Suggestion for the mission based version
