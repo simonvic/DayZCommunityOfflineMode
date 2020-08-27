@@ -290,7 +290,7 @@ PanelWidgetClass ObjectMenu
 					vexactpos 1
 					hexactsize 1
 					vexactsize 1
-          text "100"
+          text "1000"
 					style ServerBrowser
 				}
 
