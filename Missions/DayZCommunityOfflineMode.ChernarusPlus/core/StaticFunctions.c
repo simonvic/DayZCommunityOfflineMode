@@ -248,14 +248,19 @@ static PlayerBase COM_CreateCustomDefaultCharacter()
 {
     PlayerBase oPlayer = PlayerBase.Cast( GetGame().CreatePlayer( NULL, "SurvivorM_Mirek" , COM_GetSpawnPoints().GetRandomElement(), 0, "NONE") );
 	
-    oPlayer.GetInventory().CreateInInventory( "AviatorGlasses" );
-    oPlayer.GetInventory().CreateInInventory( "MilitaryBeret_UN" );
-    oPlayer.GetInventory().CreateInInventory( "M65Jacket_Black" );
-    oPlayer.GetInventory().CreateInInventory( "TacticalGloves_Black" );
-    oPlayer.GetInventory().CreateInInventory( "HunterPants_Autumn" );
+    oPlayer.GetInventory().CreateInInventory( "MilitaryBeret_Red" );
+    oPlayer.GetInventory().CreateInInventory( "AviatorGlasses" );    
+
+    oPlayer.GetInventory().CreateInInventory( "TShirt_Green" );
+    oPlayer.GetInventory().CreateInInventory( "PressVest_Blue" );
+
+    oPlayer.GetInventory().CreateInInventory( "TacticalGloves_Beige" );
+    oPlayer.GetInventory().CreateInInventory( "MilitaryBelt" );
+    oPlayer.GetInventory().CreateInInventory( "AliceBag_Green" );
+
+    oPlayer.GetInventory().CreateInInventory( "CargoPants_Blue" );
+
     oPlayer.GetInventory().CreateInInventory( "MilitaryBoots_Black" );
-    oPlayer.GetInventory().CreateInInventory( "AliceBag_Camo" );
-    oPlayer.GetInventory().CreateInInventory( "Shovel" );
 	
 	Weapon_Base m4 = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("M4A1"));
 	m4.GetInventory().CreateAttachment("M4_Suppressor");
@@ -264,7 +269,6 @@ static PlayerBase COM_CreateCustomDefaultCharacter()
 	EntityAI m68 = m4.GetInventory().CreateAttachment("M68Optic");
 	m68.GetInventory().CreateAttachment("Battery9V");
 	oPlayer.GetInventory().CreateInInventory("Mag_STANAGCoupled_30Rnd");
-	oPlayer.GetInventory().CreateInInventory("ACOGOptic");
 	
 	Weapon_Base akm = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("AKM"));
 	akm.GetInventory().CreateAttachment("AK74_WoodBttstck");
@@ -277,13 +281,16 @@ static PlayerBase COM_CreateCustomDefaultCharacter()
 	fnp45.GetInventory().CreateAttachment("Battery9V");
 	oPlayer.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
 	
+    Weapon_Base e1911 = oPlayer.GetInventory().CreateInInventory( "Engraved1911" );
+    oPlayer.GetInventory().CreateInInventory( "Mag_1911_7Rnd" ); 
+
 	Weapon_Base mosin = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("Mosin9130"));
 	mosin.GetInventory().CreateAttachment("PUScopeoptic");
 	
 	Weapon_Base winchester = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("Winchester70"));
 	winchester.GetInventory().CreateAttachment("HuntingOptic");
 	
-    Weapon_Base oWpn = COM_CreateWeapon( oPlayer, "UMP45" );
+    Weapon_Base ump = COM_CreateWeapon( oPlayer, "UMP45" );
     oPlayer.PredictiveTakeEntityToHands( m4 );
 	
     Magazine oMag = Magazine.Cast( oPlayer.GetInventory().CreateInInventory( "Mag_UMP_25Rnd" ) );	
@@ -294,7 +301,15 @@ static PlayerBase COM_CreateCustomDefaultCharacter()
 	oPlayer.SetQuickBarEntityShortcut( glock, 2, true );
 	oPlayer.SetQuickBarEntityShortcut( mosin, 3, true );
 	oPlayer.SetQuickBarEntityShortcut( winchester, 4, true );
-	oPlayer.SetQuickBarEntityShortcut( oWpn, 5, true );
+	oPlayer.SetQuickBarEntityShortcut( ump, 5, true );
+
+    Clothing weaponBag = GetGame().CreateObject( "AliceBag_Black", oPlayer.GetPosition());
+    Weapon_Base fal = weaponBag.GetInventory().CreateInInventory("FAL");
+    fal.GetInventory().CreateInInventory("ACOGOptic");
+    fal.GetInventory().CreateInInventory("Fal_FoldingBttstck");
+    weaponBag.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
+
+    weaponBag.GetInventory().CreateInInventory("Mp133Shotgun");
 	
     return oPlayer;
 }
