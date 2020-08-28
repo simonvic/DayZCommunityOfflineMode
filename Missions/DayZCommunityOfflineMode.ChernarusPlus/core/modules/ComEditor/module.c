@@ -16,6 +16,7 @@
 #include "$CurrentDir:missions\\DayZCommunityOfflineMode.ChernarusPlus\\core\\modules\\AdminTool\\gui\\PositionMenu.c"
 #include "$CurrentDir:missions\\DayZCommunityOfflineMode.ChernarusPlus\\core\\modules\\ComEditor\\gui\\WeatherMenu.c"
 #include "$CurrentDir:missions\\DayZCommunityOfflineMode.ChernarusPlus\\core\\modules\\ComEditor\\gui\\GameMenu.c"
+#include "$CurrentDir:missions\\DayZCommunityOfflineMode.ChernarusPlus\\core\\modules\\ComEditor\\gui\\DebugMenu.c"
 #include "$CurrentDir:missions\\DayZCommunityOfflineMode.ChernarusPlus\\core\\modules\\ComEditor\\gui\\PopupMenu.c"
 #include "$CurrentDir:missions\\DayZCommunityOfflineMode.ChernarusPlus\\core\\modules\\ComEditor\\gui\\ObjectInfoMenu.c"
 #include "$CurrentDir:missions\\DayZCommunityOfflineMode.ChernarusPlus\\core\\modules\\ComEditor\\gui\\OverrideVerticalSpacer.c"

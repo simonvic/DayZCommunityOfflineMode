@@ -1,74 +1,99 @@
 /*
 	Manages all keybinds for COM
 */
-class CustomDebugMonitor extends Module
-{
+class CustomDebugMonitor extends Module{
 	protected bool m_IsVisible = false;
 	protected ref ArkDebugMonitor m_debugMonitor;
+	
+	protected ref TVectorArray m_canvasPoints;
+	protected float m_time = 0;	
+	protected float m_timeMultipler = 100;
 
-	void CustomDebugMonitor()
-	{
+	void CustomDebugMonitor(){
 	    m_debugMonitor = new ArkDebugMonitor;
+		m_canvasPoints = new TVectorArray;
+		m_canvasPoints.Insert("0 0 0"); //first point (only x and y is used)
+
 	}
 
-	void ~CustomDebugMonitor()
-	{
+	void ~CustomDebugMonitor(){
 	}
 	
-	override void Init() 
-	{
+	override void Init(){
 		super.Init();
 
 		m_debugMonitor.Init();
 		m_debugMonitor.Hide();
 	}
 	
-	override void onUpdate( float timeslice )
-	{
-        if( m_IsVisible )
-        {
+	override void onUpdate( float timeslice ){		
+        if( m_IsVisible ){
             PlayerBase player = PlayerBase.Cast( COM_GetPB() );
-
-            if ( player )
-            {
+            if ( player ){
                 DebugMonitorValues values = player.GetDebugMonitorValues();
-
-                if ( values )
-                {
-                    auto health = player.GetHealth("","Health");
-                    auto blood = player.GetHealth("","Blood");
-                    auto lastdamage = values.GetLastDamage();
-
-                    if( lastdamage == "" )
-                    {
-                        lastdamage = "Unknown";
-                    }
-
-                    auto position = player.GetPosition();
-                    auto orientation = GetGame().GetCurrentCameraDirection().VectorToAngles();
-
-                    m_debugMonitor.SetHealth( health );
-                    m_debugMonitor.SetBlood( blood );
-                    m_debugMonitor.SetLastDamage( lastdamage );
-                    m_debugMonitor.SetPosition( position );
-                    m_debugMonitor.SetOrientation( orientation );
-
-                    int year;
-                    int month;
-                    int day;
-                    int hour;
-                    int minute;
-                    int second;
-
-                    GetYearMonthDay(year, month, day);
-                    GetHourMinuteSecond(hour, minute, second);
-
-                    string date = day.ToStringLen(2) + "-" + month.ToStringLen(2) + "-" + year.ToStringLen(2) + " " + hour.ToStringLen(2) + ":" + minute.ToStringLen(2) + ":" + second.ToStringLen(2);
-
-                    m_debugMonitor.SetDateTime( date );
+                if ( values ){
+                	updateDebugMonitorValues(player,values);    
                 }
+				m_time += timeslice;
+				updateCanvas(player);
+				m_debugMonitor.updateHeartStats(player.getHeartRateManager());
             }
         }
+	}
+	
+	private void updateCanvas(PlayerBase player){
+		if(m_time *  m_timeMultipler > m_debugMonitor.getCanvasScreenWidth()) {
+			m_time = 0;
+			m_canvasPoints.Clear();
+		}
+		
+		vector newPoint;
+		newPoint[0] = m_time * m_timeMultipler;
+		newPoint[1] = player.getHeartRateManager().getHeartRate();
+		newPoint[2] = 0;	
+		
+		
+		//if(m_canvasPoints.Find(newPoint) == -1){
+		m_canvasPoints.Insert(newPoint);
+		m_debugMonitor.clearCanvas();
+		m_debugMonitor.drawLines(m_canvasPoints);
+
+		
+		
+	}
+	
+	private void updateDebugMonitorValues(PlayerBase player, DebugMonitorValues values){
+		auto health = player.GetHealth("","Health");
+		auto blood = player.GetHealth("","Blood");
+		auto lastdamage = values.GetLastDamage();
+		
+		if( lastdamage == "" )
+		{
+		    lastdamage = "Unknown";
+		}
+		
+		auto position = player.GetPosition();
+		auto orientation = GetGame().GetCurrentCameraDirection().VectorToAngles();
+		
+		m_debugMonitor.SetHealth( health );
+		m_debugMonitor.SetBlood( blood );
+		m_debugMonitor.SetLastDamage( lastdamage );
+		m_debugMonitor.SetPosition( position );
+		m_debugMonitor.SetOrientation( orientation );
+		
+		int year;
+		int month;
+		int day;
+		int hour;
+		int minute;
+		int second;
+		
+		GetYearMonthDay(year, month, day);
+		GetHourMinuteSecond(hour, minute, second);
+		
+		string date = day.ToStringLen(2) + "-" + month.ToStringLen(2) + "-" + year.ToStringLen(2) + " " + hour.ToStringLen(2) + ":" + minute.ToStringLen(2) + ":" + second.ToStringLen(2);
+		
+		m_debugMonitor.SetDateTime( date );
 	}
 	
 	override void RegisterKeyMouseBindings() 

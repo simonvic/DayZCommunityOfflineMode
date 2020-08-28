@@ -1,0 +1,82 @@
+PanelWidgetClass DebugMenu {
+ visible 1
+ disabled 0
+ color 0 0 0 0
+ position 0.045 0.182
+ size 518.66797 345.20502
+ halign right_ref
+ valign top_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 1
+ vexactsize 1
+ draggable 0
+ scriptclass "DebugMenu"
+ style EditorPanel
+ {
+  PanelWidgetClass Background {
+   visible 1
+   color 0 0 0 0.6863
+   position 0 0
+   size 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+  }
+  PanelWidgetClass title_wrapper {
+   visible 1
+   color 0 0 0 0.7843
+   size 1 0.1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    TextWidgetClass title_text {
+     position 0 0
+     size 1 0.6
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Normal
+     text "DEBUG MENU"
+     font "gui/fonts/Metron-Bold58"
+     "exact text" 1
+     "exact text size" 20
+     "text halign" center
+     "text valign" center
+    }
+   }
+  }
+  PanelWidgetClass pnl_body {
+   ignorepointer 1
+   color 1 0 0 0.702
+   size 1 0.9
+   halign center_ref
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    ButtonWidgetClass btn_toggleDebugMonitor {
+     position 0.05 0.05
+     size 100 0.1
+     halign right_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 0
+     text "Toggle"
+    }
+   }
+  }
+ }
+}
