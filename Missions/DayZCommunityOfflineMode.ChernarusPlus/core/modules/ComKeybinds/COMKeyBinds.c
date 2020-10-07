@@ -167,7 +167,8 @@ class COMKeyBinds extends Module
     {
         if( COM_CTRL() )
         {
-            GetGame().CreateObject( "Animal_CanisLupus_Grey", COM_GetCursorPos(), false, true );
+            GetGame().CreateObject( "SurvivorM_Boris", COM_GetCursorPos(), false, true );
+			
         }
         else if( COM_SHIFT() )
         {

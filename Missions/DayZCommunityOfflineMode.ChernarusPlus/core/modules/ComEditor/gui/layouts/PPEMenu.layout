@@ -1,0 +1,421 @@
+PanelWidgetClass PPEMenu {
+ visible 1
+ disabled 0
+ color 0 0 0 0
+ position 0.045 0.00905
+ size 1216.71997 531.99005
+ halign right_ref
+ valign top_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 1
+ vexactsize 1
+ draggable 1
+ scriptclass "PPEMenu"
+ style EditorPanel
+ {
+  PanelWidgetClass Background {
+   visible 1
+   color 0 0 0 0.6863
+   position 0 0
+   size 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+  }
+  PanelWidgetClass title_wrapper {
+   visible 1
+   color 0 0 0 0.7843
+   size 1 0.1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    TextWidgetClass title_text {
+     position 0 0
+     size 1 0.6
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Normal
+     text "POST-PROCESS EFFECTS MENU"
+     font "gui/fonts/Metron-Bold58"
+     "exact text" 1
+     "exact text size" 20
+     "text halign" center
+     "text valign" center
+    }
+   }
+  }
+  PanelWidgetClass pnl_body {
+   ignorepointer 1
+   color 1 0 0 0.702
+   size 1 0.9
+   halign center_ref
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    PanelWidgetClass pnl_animations_container {
+     ignorepointer 1
+     size 1 1
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      PanelWidgetClass pnl_registered_container {
+       ignorepointer 1
+       position 0 0
+       size 0.2 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        PanelWidgetClass pnl_registered_header {
+         ignorepointer 1
+         size 1 0.1
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextWidgetClass txt_registered_header {
+           ignorepointer 1
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Registered animations"
+           font "gui/fonts/metron16"
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass pnl_registered_body {
+         ignorepointer 1
+         position 0 0.1
+         size 1 0.9
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          PanelWidgetClass pnl_controls {
+           ignorepointer 1
+           position 0 0
+           size 1 0.1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            ButtonWidgetClass btn_start {
+             position 0 0
+             size 50 1
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 1
+             vexactsize 0
+             text "|>"
+            }
+            ButtonWidgetClass btn_stop {
+             position 50 0
+             size 50 1
+             valign center_ref
+             hexactpos 1
+             vexactpos 0
+             hexactsize 1
+             vexactsize 0
+             text "[]"
+            }
+            ButtonWidgetClass btn_pause {
+             position 100 0
+             size 50 1
+             valign center_ref
+             hexactpos 1
+             vexactpos 0
+             hexactsize 1
+             vexactsize 0
+             text "| |"
+            }
+            ButtonWidgetClass btn_resume {
+             position 150 0
+             size 50 1
+             valign center_ref
+             hexactpos 1
+             vexactpos 0
+             hexactsize 1
+             vexactsize 0
+             text "->"
+            }
+           }
+          }
+          TextListboxWidgetClass list_registered {
+           size 1 0.9
+           halign center_ref
+           valign bottom_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           font "gui/fonts/metron12"
+          }
+         }
+        }
+       }
+      }
+      PanelWidgetClass pnl_playing_container {
+       ignorepointer 1
+       position 0.2 0
+       size 0.2 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        PanelWidgetClass pnl_playing_header {
+         ignorepointer 1
+         size 1 0.1
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextWidgetClass txt_playing_header {
+           ignorepointer 1
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Playing"
+           font "gui/fonts/metron16"
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass pnl_playing_body {
+         ignorepointer 1
+         position 0 0.1
+         size 1 0.9
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextListboxWidgetClass list_playing {
+           position 0 0
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           font "gui/fonts/metron12"
+          }
+         }
+        }
+       }
+      }
+      PanelWidgetClass pnl_stopping_container {
+       ignorepointer 1
+       position 0.4 0
+       size 0.2 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        PanelWidgetClass pnl_stopping_header {
+         ignorepointer 1
+         size 1 0.1
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextWidgetClass txt_stopping_header {
+           ignorepointer 1
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Stopping"
+           font "gui/fonts/metron16"
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass pnl_stopping_body {
+         ignorepointer 1
+         position 0 0.1
+         size 1 0.9
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextListboxWidgetClass list_stopping {
+           position 0 0
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           font "gui/fonts/metron12"
+          }
+         }
+        }
+       }
+      }
+      PanelWidgetClass pnl_paused_container {
+       ignorepointer 1
+       position 0.79902 0
+       size 0.2 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        PanelWidgetClass pnl_paused_header {
+         ignorepointer 1
+         size 1 0.1
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextWidgetClass txt_paused_header {
+           ignorepointer 1
+           position 0 0
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Paused"
+           font "gui/fonts/metron16"
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass pnl_paused_body {
+         ignorepointer 1
+         position 0 0.1
+         size 1 0.9
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextListboxWidgetClass list_paused {
+           position 0 0
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           font "gui/fonts/metron12"
+          }
+         }
+        }
+       }
+      }
+      PanelWidgetClass pnl_stopped_container {
+       ignorepointer 1
+       position 0.6 0
+       size 0.2 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        PanelWidgetClass pnl_stopped_header {
+         ignorepointer 1
+         size 1 0.1
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextWidgetClass txt_stopped_header {
+           ignorepointer 1
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Stopped"
+           font "gui/fonts/metron16"
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass pnl_stopped_body {
+         ignorepointer 1
+         position 0 0.1
+         size 1 0.9
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextListboxWidgetClass list_stopped {
+           position 0 0
+           size 1 1
+           halign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           font "gui/fonts/metron12"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

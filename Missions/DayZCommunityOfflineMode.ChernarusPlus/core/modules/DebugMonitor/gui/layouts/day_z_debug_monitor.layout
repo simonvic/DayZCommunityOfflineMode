@@ -151,7 +151,7 @@ FrameWidgetClass HudDebugFrameWidget {
     }
     PanelWidgetClass pnl_body {
      ignorepointer 1
-     color 0.2 0.2 0.2 0.3608
+     color 0.2 0.2 0.2 0.1725
      size 1 0.95
      halign center_ref
      valign bottom_ref
@@ -163,7 +163,7 @@ FrameWidgetClass HudDebugFrameWidget {
      {
       PanelWidgetClass pnl_stats {
        ignorepointer 1
-       color 0.2 0.2 0.2 1
+       color 0.2 0.2 0.2 0.5059
        size 1 0.1
        halign center_ref
        hexactpos 0
@@ -241,7 +241,7 @@ FrameWidgetClass HudDebugFrameWidget {
       }
       PanelWidgetClass pnl_heartStats {
        ignorepointer 1
-       color 0.2 0.2 0.2 1
+       color 0.2 0.2 0.2 0.5059
        position 0 0
        size 0.2 0.9
        halign right_ref

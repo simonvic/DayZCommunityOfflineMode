@@ -35,13 +35,16 @@ class CustomDebugMonitor extends Module{
                 	updateDebugMonitorValues(player,values);    
                 }
 				m_time += timeslice;
-				updateCanvas(player);
+				drawHeartRate(player);
+				//drawGaussFunction();
+				//drawDampedSinFunction();
+				//drawArctan();
 				m_debugMonitor.updateHeartStats(player.getHeartRateManager());
             }
         }
 	}
 	
-	private void updateCanvas(PlayerBase player){
+	private void drawHeartRate(PlayerBase player){
 		if(m_time *  m_timeMultipler > m_debugMonitor.getCanvasScreenWidth()) {
 			m_time = 0;
 			m_canvasPoints.Clear();
@@ -52,14 +55,59 @@ class CustomDebugMonitor extends Module{
 		newPoint[1] = player.getHeartRateManager().getHeartRate();
 		newPoint[2] = 0;	
 		
+		m_canvasPoints.Insert(newPoint);
+		m_debugMonitor.clearCanvas();
+		m_debugMonitor.drawLines(m_canvasPoints);
+	}
+	
+	private void drawGaussFunction(){
+		if(m_time *  m_timeMultipler > m_debugMonitor.getCanvasScreenWidth()) {
+			m_time = 0;
+			m_canvasPoints.Clear();
+		}
 		
-		//if(m_canvasPoints.Find(newPoint) == -1){
+		vector newPoint;
+		newPoint[0] = m_time * m_timeMultipler;
+		newPoint[1] = SMath.Gauss(1,3,1,m_time) * m_timeMultipler;
+		newPoint[2] = 0;	
+		
+		m_canvasPoints.Insert(newPoint);
+		m_debugMonitor.clearCanvas();
+		m_debugMonitor.drawLines(m_canvasPoints);
+	}
+	
+	private void drawDampedSinFunction(){
+		if(m_time *  m_timeMultipler > m_debugMonitor.getCanvasScreenWidth()) {
+			m_time = 0;
+			m_canvasPoints.Clear();
+		}
+		
+		vector newPoint;
+		newPoint[0] = m_time * m_timeMultipler;
+		newPoint[1] = SMath.DampedSin(m_debugMonitor.getCanvasScreenHeight()/2, 0.8, 0, 10, m_debugMonitor.getCanvasScreenHeight()/2, m_time);
+		newPoint[2] = 0;	
+		
 		m_canvasPoints.Insert(newPoint);
 		m_debugMonitor.clearCanvas();
 		m_debugMonitor.drawLines(m_canvasPoints);
 
+	}
+	
+	private void drawArctan(){
+		if(m_time *  m_timeMultipler > m_debugMonitor.getCanvasScreenWidth()) {
+			m_time = 0;
+			m_canvasPoints.Clear();
+		}
 		
+		float result = SMath.Arctan(-47.5, 0.05, -9.1, 103.6, m_time * m_timeMultipler);
+		vector newPoint;
+		newPoint[0] = m_time * m_timeMultipler;
+		newPoint[1] = result;
+		newPoint[2] = 0;	
 		
+		m_canvasPoints.Insert(newPoint);
+		m_debugMonitor.clearCanvas();
+		m_debugMonitor.drawLines(m_canvasPoints);
 	}
 	
 	private void updateDebugMonitorValues(PlayerBase player, DebugMonitorValues values){

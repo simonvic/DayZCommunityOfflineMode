@@ -260,7 +260,8 @@ static PlayerBase COM_CreateCustomDefaultCharacter()
 
     oPlayer.GetInventory().CreateInInventory( "CargoPants_Blue" );
 
-    oPlayer.GetInventory().CreateInInventory( "MilitaryBoots_Black" );
+    EntityAI boots = oPlayer.GetInventory().CreateInInventory( "MilitaryBoots_Black" );
+    EntityAI knife = boots.GetInventory().CreateAttachment("HuntingKnife");
 	
 	Weapon_Base m4 = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("M4A1"));
 	m4.GetInventory().CreateAttachment("M4_Suppressor");
@@ -272,6 +273,7 @@ static PlayerBase COM_CreateCustomDefaultCharacter()
 	
 	Weapon_Base akm = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("AKM"));
 	akm.GetInventory().CreateAttachment("AK74_WoodBttstck");
+	akm.GetInventory().CreateAttachment("AK74_Hndgrd");
 	EntityAI pso = akm.GetInventory().CreateAttachment("PSO1Optic");
 	pso.GetInventory().CreateAttachment("Battery9V");
 	oPlayer.GetInventory().CreateInInventory("Mag_AKM_Drum75Rnd");
@@ -290,27 +292,35 @@ static PlayerBase COM_CreateCustomDefaultCharacter()
 	Weapon_Base winchester = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("Winchester70"));
 	winchester.GetInventory().CreateAttachment("HuntingOptic");
 	
+    Weapon_Base fal = oPlayer.GetInventory().CreateInInventory("FAL");
+    fal.GetInventory().CreateInInventory("ACOGOptic");
+    fal.GetInventory().CreateInInventory("Fal_FoldingBttstck");
+    oPlayer.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
+
     Weapon_Base ump = COM_CreateWeapon( oPlayer, "UMP45" );
-    oPlayer.PredictiveTakeEntityToHands( m4 );
-	
-    Magazine oMag = Magazine.Cast( oPlayer.GetInventory().CreateInInventory( "Mag_UMP_25Rnd" ) );	
     oPlayer.GetInventory().CreateInInventory( "Mag_UMP_25Rnd" );
+
+    oPlayer.PredictiveTakeEntityToHands( m4 );
 	
     oPlayer.SetQuickBarEntityShortcut( m4, 0, true );
     oPlayer.SetQuickBarEntityShortcut( akm, 1, true );
 	oPlayer.SetQuickBarEntityShortcut( glock, 2, true );
 	oPlayer.SetQuickBarEntityShortcut( mosin, 3, true );
-	oPlayer.SetQuickBarEntityShortcut( winchester, 4, true );
+	oPlayer.SetQuickBarEntityShortcut( knife, 4, true );
 	oPlayer.SetQuickBarEntityShortcut( ump, 5, true );
 
     Clothing weaponBag = GetGame().CreateObject( "AliceBag_Black", oPlayer.GetPosition());
-    Weapon_Base fal = weaponBag.GetInventory().CreateInInventory("FAL");
-    fal.GetInventory().CreateInInventory("ACOGOptic");
-    fal.GetInventory().CreateInInventory("Fal_FoldingBttstck");
-    weaponBag.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
-
     weaponBag.GetInventory().CreateInInventory("Mp133Shotgun");
-	
+
+    EntityAI stove = GetGame().CreateObject( "PortableGasStove", oPlayer.GetPosition());
+	EntityAI pot = stove.GetInventory().CreateAttachment("Pot");
+    pot.GetInventory().CreateEntityInCargo("Rice");
+    pot.GetInventory().CreateEntityInCargo("Potato");
+    pot.GetInventory().CreateEntityInCargo("AgaricusMushroom");
+    pot.GetInventory().CreateEntityInCargo("AgaricusMushroom");
+
+    stove.GetInventory().CreateAttachment("LargeGasCanister");
+
     return oPlayer;
 }
 
