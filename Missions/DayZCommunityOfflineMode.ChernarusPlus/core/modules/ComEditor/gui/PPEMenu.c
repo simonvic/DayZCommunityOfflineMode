@@ -11,6 +11,7 @@ class PPEMenu extends PopupMenu{
 	protected ButtonWidget m_btn_stop;
 	protected ButtonWidget m_btn_pause;
 	protected ButtonWidget m_btn_resume;
+	protected ButtonWidget m_btn_deactivateAll;
 	
 	protected ref Timer m_updateTimer = new Timer();
 	protected static ref TPPEAnimatedParamsList m_registeredAnimations = new TPPEAnimatedParamsList;
@@ -40,6 +41,7 @@ class PPEMenu extends PopupMenu{
 		m_btn_stop = ButtonWidget.Cast(layoutRoot.FindAnyWidget("btn_stop"));
 		m_btn_pause = ButtonWidget.Cast(layoutRoot.FindAnyWidget("btn_pause"));
 		m_btn_resume = ButtonWidget.Cast(layoutRoot.FindAnyWidget("btn_resume"));
+		m_btn_deactivateAll = ButtonWidget.Cast(layoutRoot.FindAnyWidget("btn_deactivateAll"));
 		
 		m_updateTimer.Run(0.1,this,"updateAnimations",NULL, true);
 	}
@@ -138,6 +140,11 @@ class PPEMenu extends PopupMenu{
 			case m_btn_resume:
 			SLogger.Info(string.Format("Resuming animations : %1",selection), "PPEMenu",0);
 			m_registeredAnimations[selectedRow].resume();
+			break;
+			
+			case m_btn_deactivateAll:
+			SLogger.Info("Deactivating all animationss : %1", "PPEMenu",0);
+			PluginPPEffects.deactivateAllModifiers();
 			break;
 						
 		}
