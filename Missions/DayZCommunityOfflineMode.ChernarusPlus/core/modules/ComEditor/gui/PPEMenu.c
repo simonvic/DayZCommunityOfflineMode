@@ -23,11 +23,11 @@ class PPEMenu extends PopupMenu{
 	void PPEMenu(){
 		
 	}
-
+	
 	void ~PPEMenu(){
 	}
-
-
+	
+	
 	override void Init(){
 		registerAnimations();
 		m_list_registeredAnimations = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("list_registered"));
@@ -52,7 +52,7 @@ class PPEMenu extends PopupMenu{
 		m_registeredAnimations.InsertAt(m_debug, 1);
 		m_registeredAnimations.InsertAt(m_hit, 2);
 		m_registeredAnimations.InsertAt(m_epinephrine, 3);
-		SLogger.Info(string.Format("Registered %1 animations",m_registeredAnimations.Count()), "PPEMenu",0);
+		SLogger.info(string.Format("Registered %1 animations",m_registeredAnimations.Count()), "PPEMenu",0);
 	}
 	
 	protected void loadRegisteredAnimations(){
@@ -61,21 +61,21 @@ class PPEMenu extends PopupMenu{
 			string animSuperType;
 			if(anim.IsInherited(PPELoopedParams)) {
 				animSuperType = "PPELoopedParams";
-			}else if(anim.IsInherited(PPETimedParams)){
+				}else if(anim.IsInherited(PPETimedParams)){
 				animSuperType = "PPETimedParams";
 			}
 			animName += animSuperType + ")";
 			m_list_registeredAnimations.AddItem(animName,anim,0);
-			SLogger.Info(string.Format("Loading registered animation: %1",anim), "",1);
+			SLogger.info(string.Format("Loading registered animation: %1",anim), "",1);
 		}
 	}
-
+	
 	override void OnShow(){
-		SLogger.Info("Resuming animations update","PPEMenu",0);
+		SLogger.info("Resuming animations update","PPEMenu",0);
 		m_updateTimer.Continue();
 	}
 	
-	void updateAnimations(){		
+	void updateAnimations(){
 		autoptr TPPEAnimatedParamsList anims = PluginPPEffects.getAnimations();
 		TextListboxWidget destination;
 		m_list_playingAnimations.ClearItems();
@@ -104,51 +104,51 @@ class PPEMenu extends PopupMenu{
 				default:
 				destination = m_list_pausedAnimations;
 			}
-			destination.AddItem(anim.Type().ToString(),anim,0); 
+			destination.AddItem(anim.Type().ToString(),anim,0);
 		}
 	}
-
+	
 	override void OnHide(){
-		SLogger.Info("Pausing animations update","PPEMenu",0);
+		SLogger.info("Pausing animations update","PPEMenu",0);
 		m_updateTimer.Pause();
 	}
-
+	
 	override bool OnClick( Widget w, int x, int y, int button ){
 		string selection;
 		int selectedRow = m_list_registeredAnimations.GetSelectedRow();
 		if (  selectedRow != -1 ){
 			m_list_registeredAnimations.GetItemText( selectedRow, 0, selection );
 		}
-
-	
+		
+		
 		switch(w){
 			case m_btn_start:
-			SLogger.Info(string.Format("Starting animations : %1",selection), "PPEMenu",0);
+			SLogger.info(string.Format("Starting animations : %1",selection), "PPEMenu",0);
 			PluginPPEffects.activateModifier(m_registeredAnimations[selectedRow]);
 			break;
 			
 			case m_btn_stop:
-			SLogger.Info(string.Format("Stopping animations : %1",selection), "PPEMenu",0);
+			SLogger.info(string.Format("Stopping animations : %1",selection), "PPEMenu",0);
 			PluginPPEffects.deactivateModifier(m_registeredAnimations[selectedRow]);
 			break;
 			
 			case m_btn_pause:
-			SLogger.Info(string.Format("Pausing animations : %1",selection), "PPEMenu",0);
+			SLogger.info(string.Format("Pausing animations : %1",selection), "PPEMenu",0);
 			m_registeredAnimations[selectedRow].pause();
 			break;
 			
 			case m_btn_resume:
-			SLogger.Info(string.Format("Resuming animations : %1",selection), "PPEMenu",0);
+			SLogger.info(string.Format("Resuming animations : %1",selection), "PPEMenu",0);
 			m_registeredAnimations[selectedRow].resume();
 			break;
 			
 			case m_btn_deactivateAll:
-			SLogger.Info("Deactivating all animationss : %1", "PPEMenu",0);
+			SLogger.info("Deactivating all animationss : %1", "PPEMenu",0);
 			PluginPPEffects.deactivateAllModifiers();
 			break;
-						
+			
 		}
 		return true;
 	}
-
+	
 }
