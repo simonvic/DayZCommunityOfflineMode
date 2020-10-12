@@ -3,7 +3,6 @@ class PPEMenu extends PopupMenu{
 	protected TextListboxWidget m_list_registeredAnimations;
 	
 	protected TextListboxWidget m_list_playingAnimations;
-	protected TextListboxWidget m_list_stoppingAnimations;
 	protected TextListboxWidget m_list_pausedAnimations;
 	protected TextListboxWidget m_list_stoppedAnimations;
 	
@@ -20,6 +19,7 @@ class PPEMenu extends PopupMenu{
 	protected static ref PPEDebugAnimation m_debug  = new PPEDebugAnimation();
 	protected static ref PPEHitReceivedAnimation m_hit = new PPEHitReceivedAnimation(3);
 	protected static ref PPEEpinephrineAnimation m_epinephrine = new PPEEpinephrineAnimation();
+
 	void PPEMenu(){
 		
 	}
@@ -32,8 +32,7 @@ class PPEMenu extends PopupMenu{
 		registerAnimations();
 		m_list_registeredAnimations = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("list_registered"));
 		loadRegisteredAnimations();
-		m_list_playingAnimations = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("list_playing"));
-		m_list_stoppingAnimations = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("list_stopping"));
+		m_list_playingAnimations = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("list_playing"));		
 		m_list_pausedAnimations = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("list_paused"));
 		m_list_stoppedAnimations = TextListboxWidget.Cast(layoutRoot.FindAnyWidget("list_stopped"));
 		
@@ -79,7 +78,6 @@ class PPEMenu extends PopupMenu{
 		autoptr TPPEAnimatedParamsList anims = PluginPPEffects.getAnimations();
 		TextListboxWidget destination;
 		m_list_playingAnimations.ClearItems();
-		m_list_stoppingAnimations.ClearItems();
 		m_list_stoppedAnimations.ClearItems();
 		m_list_pausedAnimations.ClearItems();
 		foreach(auto anim : anims){
@@ -87,10 +85,6 @@ class PPEMenu extends PopupMenu{
 			switch(animState){
 				case ePPEAnimationStates.PLAYING:
 				destination = m_list_playingAnimations;
-				break;
-				
-				case ePPEAnimationStates.STOPPING:
-				destination = m_list_stoppingAnimations;
 				break;
 				
 				case ePPEAnimationStates.STOPPED:
@@ -102,6 +96,7 @@ class PPEMenu extends PopupMenu{
 				break;
 				
 				default:
+				SLogger.warning("Unkown PPEAnimation state","PPEMenu")
 				destination = m_list_pausedAnimations;
 			}
 			destination.AddItem(anim.Type().ToString(),anim,0);

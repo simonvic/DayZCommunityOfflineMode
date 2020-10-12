@@ -78,7 +78,7 @@ PanelWidgetClass PPEMenu {
       PanelWidgetClass pnl_registered_container {
        ignorepointer 1
        position 0 0
-       size 0.2 1
+       size 0.25 1
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -196,8 +196,8 @@ PanelWidgetClass PPEMenu {
       }
       PanelWidgetClass pnl_playing_container {
        ignorepointer 1
-       position 0.2 0
-       size 0.2 1
+       position 0.25 0
+       size 0.25 1
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -251,67 +251,10 @@ PanelWidgetClass PPEMenu {
         }
        }
       }
-      PanelWidgetClass pnl_stopping_container {
-       ignorepointer 1
-       position 0.4 0
-       size 0.2 1
-       hexactpos 0
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       {
-        PanelWidgetClass pnl_stopping_header {
-         ignorepointer 1
-         size 1 0.1
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         {
-          TextWidgetClass txt_stopping_header {
-           ignorepointer 1
-           size 1 1
-           halign center_ref
-           hexactpos 0
-           vexactpos 0
-           hexactsize 0
-           vexactsize 0
-           text "Stopping"
-           font "gui/fonts/metron16"
-           "text halign" center
-           "text valign" center
-          }
-         }
-        }
-        PanelWidgetClass pnl_stopping_body {
-         ignorepointer 1
-         position 0 0.1
-         size 1 0.9
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         {
-          TextListboxWidgetClass list_stopping {
-           position 0 0
-           size 1 1
-           halign center_ref
-           hexactpos 0
-           vexactpos 0
-           hexactsize 0
-           vexactsize 0
-           font "gui/fonts/metron12"
-          }
-         }
-        }
-       }
-      }
       PanelWidgetClass pnl_paused_container {
        ignorepointer 1
-       position 0.79902 0
-       size 0.2 1
+       position 0.5 0
+       size 0.25 1
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -368,8 +311,8 @@ PanelWidgetClass PPEMenu {
       }
       PanelWidgetClass pnl_stopped_container {
        ignorepointer 1
-       position 0.6 0
-       size 0.2 1
+       position 0.75 0
+       size 0.25 1
        hexactpos 0
        vexactpos 0
        hexactsize 0
