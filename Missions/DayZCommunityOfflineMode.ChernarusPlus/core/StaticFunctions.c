@@ -264,20 +264,21 @@ static PlayerBase COM_CreateCustomDefaultCharacter(){
     Weapon_Base ak74 = createWeapon(inv, "AK74");
     createAttachment(ak74, "AK_PlasticBttstck");
     createAttachment(ak74, "AK_PlasticHndgrd");
-    createItem(inv, "Mag_AK74_30Rnd");
+    createItem(inv, "Mag_AK74_30Rnd_Black");
 
     Weapon_Base mp5 = createWeapon(inv, "MP5K");
     addBattery(createAttachment(mp5, "ReflexOptic"));
     createAttachment(mp5, "MP5_Compensator");
     createAttachment(mp5, "MP5k_StockBttstck");
-    addBattery(createAttachment(createAttachment(mp5, "MP5_RailHndgrd"), "UniversalLight"));
+    createAttachment(mp5, "MP5_RailHndgrd");
+    addBattery(createAttachment(mp5, "UniversalLight"));
     createItem(inv, "Mag_MP5_30Rnd");
     
 
     Weapon_Base deagle = createWeapon(inv, "Deagle");
     createAttachment(deagle, "PistolOptic");
     createItem(inv, "Mag_Deagle_9rnd");
-    addBattery(createAttachment(deagle,"FNP45_MRDSOptic"));
+    addBattery(createItem(inv,"FNP45_MRDSOptic"));
 
     addBattery(createAttachment(createWeapon(inv, "Glock19"),"FNP45_MRDSOptic"));
     createItem(inv, "Mag_Glock_15Rnd");
