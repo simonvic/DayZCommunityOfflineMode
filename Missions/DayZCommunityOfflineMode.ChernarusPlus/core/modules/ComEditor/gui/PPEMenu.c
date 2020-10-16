@@ -96,7 +96,7 @@ class PPEMenu extends PopupMenu{
 				break;
 				
 				default:
-				SLogger.warning("Unkown PPEAnimation state","PPEMenu")
+				SLogger.warning("Unkown PPEAnimation state","PPEMenu");
 				destination = m_list_pausedAnimations;
 			}
 			destination.AddItem(anim.Type().ToString(),anim,0);
