@@ -221,96 +221,89 @@ static bool COM_WINKEY()
     return( ( KeyState( KeyCode.KC_LWIN ) > 0 ) || ( KeyState( KeyCode.KC_RWIN ) > 0 ) );
 }
 
-/*
-	static Weapon_Base COM_CreateWeapon( PlayerBase oPlayer )
-	{
-    Weapon_Base oWpn = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory( "M4A1_Black" ));
-    oWpn.GetInventory().CreateAttachment( "M4_Suppressor" );
-    oWpn.GetInventory().CreateAttachment( "M4_RISHndgrd_Black" );
-    oWpn.GetInventory().CreateAttachment( "M4_MPBttstck_Black" );
-    oWpn.GetInventory().CreateAttachment( "ACOGOptic" );
-	
-    return oWpn;
-	}
-*/
+static PlayerBase COM_CreateCustomDefaultCharacter(){
 
-static Weapon_Base COM_CreateWeapon( PlayerBase oPlayer, string sWeapon )
-{
-    Weapon_Base oWpn = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory( sWeapon ));
-    oWpn.GetInventory().CreateAttachment( "PistolSuppressor" );
-    EntityAI optic = oWpn.GetInventory().CreateAttachment( "ReflexOptic" );
-    optic.GetInventory().CreateAttachment("Battery9V");
-	
-    return oWpn;
-}
-
-static PlayerBase COM_CreateCustomDefaultCharacter()
-{
     PlayerBase oPlayer = PlayerBase.Cast( GetGame().CreatePlayer( NULL, "SurvivorM_Mirek" , COM_GetSpawnPoints().GetRandomElement(), 0, "NONE") );
-	
-    oPlayer.GetInventory().CreateInInventory( "MilitaryBeret_Red" );
-    oPlayer.GetInventory().CreateInInventory( "AviatorGlasses" );    
+	GameInventory inv = oPlayer.GetInventory();
 
-    oPlayer.GetInventory().CreateInInventory( "TShirt_Green" );
-    oPlayer.GetInventory().CreateInInventory( "PressVest_Blue" );
+    createItem(inv, "MilitaryBeret_Red");
+    createItem(inv, "AviatorGlasses");
 
-    oPlayer.GetInventory().CreateInInventory( "TacticalGloves_Beige" );
-    oPlayer.GetInventory().CreateInInventory( "MilitaryBelt" );
-    oPlayer.GetInventory().CreateInInventory( "AliceBag_Green" );
+    createItem(inv, "TShirt_Green");
+    createItem(inv, "PressVest_Blue");
 
-    oPlayer.GetInventory().CreateInInventory( "CargoPants_Blue" );
+    createItem(inv, "TacticalGloves_Beige");
+    createItem(inv, "MilitaryBelt");
+    createItem(inv, "AliceBag_Green");
 
-    EntityAI boots = oPlayer.GetInventory().CreateInInventory( "MilitaryBoots_Black" );
-    EntityAI knife = boots.GetInventory().CreateAttachment("HuntingKnife");
-	
-	Weapon_Base m4 = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("M4A1"));
-	m4.GetInventory().CreateAttachment("M4_Suppressor");
-	m4.GetInventory().CreateAttachment("M4_OEBttstck");
-	m4.GetInventory().CreateAttachment("M4_RISHndgrd");
-	EntityAI m68 = m4.GetInventory().CreateAttachment("M68Optic");
-	m68.GetInventory().CreateAttachment("Battery9V");
-	oPlayer.GetInventory().CreateInInventory("Mag_STANAGCoupled_30Rnd");
-	
-	Weapon_Base akm = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("AKM"));
-	akm.GetInventory().CreateAttachment("AK74_WoodBttstck");
-	akm.GetInventory().CreateAttachment("AK74_Hndgrd");
-	EntityAI pso = akm.GetInventory().CreateAttachment("PSO1Optic");
-	pso.GetInventory().CreateAttachment("Battery9V");
-	oPlayer.GetInventory().CreateInInventory("Mag_AKM_Drum75Rnd");
-	
-	Weapon_Base glock = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("Glock19"));
-	EntityAI fnp45 = glock.GetInventory().CreateAttachment("FNP45_MRDSOptic");
-	fnp45.GetInventory().CreateAttachment("Battery9V");
-	oPlayer.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
-	
-    Weapon_Base e1911 = oPlayer.GetInventory().CreateInInventory( "Engraved1911" );
-    oPlayer.GetInventory().CreateInInventory( "Mag_1911_7Rnd" ); 
+    createItem(inv, "CargoPants_Blue");
 
-	Weapon_Base mosin = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("Mosin9130"));
-	mosin.GetInventory().CreateAttachment("PUScopeoptic");
+    EntityAI boots = createItem(inv, "MilitaryBoots_Black" );
+    EntityAI knife = createAttachment(boots, "HuntingKnife" );
 	
-	Weapon_Base winchester = Weapon_Base.Cast(oPlayer.GetInventory().CreateInInventory("Winchester70"));
-	winchester.GetInventory().CreateAttachment("HuntingOptic");
-	
-    Weapon_Base fal = oPlayer.GetInventory().CreateInInventory("FAL");
-    fal.GetInventory().CreateInInventory("ACOGOptic");
-    fal.GetInventory().CreateInInventory("Fal_FoldingBttstck");
-    oPlayer.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
+    Weapon_Base vss = createWeapon(inv, "VSS");
+    addBattery(createAttachment(vss, "KobraOptic"));
+    createItem(inv, "Mag_VSS_10Rnd");
 
-    Weapon_Base ump = COM_CreateWeapon( oPlayer, "UMP45" );
-    oPlayer.GetInventory().CreateInInventory( "Mag_UMP_25Rnd" );
+    Weapon_Base mosin = createWeapon(inv, "Mosin9130");
+    createAttachment(mosin, "PUScopeoptic");
 
-    oPlayer.PredictiveTakeEntityToHands( m4 );
+	Weapon_Base fal = createWeapon(inv, "FAL");
+    addBattery(createAttachment(fal, "M68Optic"));
+    createAttachment(fal, "Fal_FoldingBttstck");
+    createItem(inv, "Mag_FAL_20Rnd");
+
+    Weapon_Base m4 = createWeapon(inv, "M4A1");
+    createAttachment(m4, "M4_Suppressor");
+    createAttachment(m4, "M4_OEBttstck");
+    createAttachment(m4, "M4_RISHndgrd");
+    createAttachment(m4, "M4_Suppressor");
+    addBattery(createAttachment(m4, "M4_T3NRDSOptic"));
+    createItem(inv, "Mag_STANAGCoupled_30Rnd");
+
+    Weapon_Base ak74 = createWeapon(inv, "AK74");
+    createAttachment(ak74, "AK_PlasticBttstck");
+    createAttachment(ak74, "AK_PlasticHndgrd");
+    createItem(inv, "Mag_AK74_30Rnd");
+
+    Weapon_Base mp5 = createWeapon(inv, "MP5K");
+    addBattery(createAttachment(mp5, "ReflexOptic"));
+    createAttachment(mp5, "MP5_Compensator");
+    createAttachment(mp5, "MP5k_StockBttstck");
+    addBattery(createAttachment(createAttachment(mp5, "MP5_RailHndgrd"), "UniversalLight"));
+    createItem(inv, "Mag_MP5_30Rnd");
+    
+
+    Weapon_Base deagle = createWeapon(inv, "Deagle");
+    createAttachment(deagle, "PistolOptic");
+    createItem(inv, "Mag_Deagle_9rnd");
+    addBattery(createAttachment(deagle,"FNP45_MRDSOptic"));
+
+    addBattery(createAttachment(createWeapon(inv, "Glock19"),"FNP45_MRDSOptic"));
+    createItem(inv, "Mag_Glock_15Rnd");
+
+    oPlayer.PredictiveTakeEntityToHands( deagle );
 	
     oPlayer.SetQuickBarEntityShortcut( m4, 0, true );
-    oPlayer.SetQuickBarEntityShortcut( akm, 1, true );
-	oPlayer.SetQuickBarEntityShortcut( glock, 2, true );
+    oPlayer.SetQuickBarEntityShortcut( ak74, 1, true );
+	oPlayer.SetQuickBarEntityShortcut( deagle, 2, true );
 	oPlayer.SetQuickBarEntityShortcut( mosin, 3, true );
 	oPlayer.SetQuickBarEntityShortcut( knife, 4, true );
-	oPlayer.SetQuickBarEntityShortcut( ump, 5, true );
+	oPlayer.SetQuickBarEntityShortcut( mp5, 5, true );
 
     Clothing weaponBag = GetGame().CreateObject( "AliceBag_Black", oPlayer.GetPosition());
-    weaponBag.GetInventory().CreateInInventory("Mp133Shotgun");
+    GameInventory weaponBagInv = weaponBag.GetInventory();
+    Weapon_Base akm = createWeapon(weaponBagInv, "AKM");
+    createAttachment(akm, "AK74_WoodBttstck");
+    createAttachment(akm, "AK74_Hndgrd");
+    addBattery(createAttachment(akm, "PSO1Optic"));
+    createItem(weaponBagInv, "Mag_AKM_Drum75Rnd");
+
+    createWeapon(weaponBagInv, "Mp133Shotgun");
+
+    createWeapon(weaponBagInv, "UMP45");
+    createItem(weaponBagInv, "Mag_UMP_25Rnd");
+    createAttachment(createWeapon(weaponBagInv, "Winchester70"), "HuntingOptic");
 
     EntityAI stove = GetGame().CreateObject( "PortableGasStove", oPlayer.GetPosition());
 	EntityAI pot = stove.GetInventory().CreateAttachment("Pot");
@@ -322,6 +315,22 @@ static PlayerBase COM_CreateCustomDefaultCharacter()
     stove.GetInventory().CreateAttachment("LargeGasCanister");
 
     return oPlayer;
+}
+
+static void addBattery(EntityAI item){
+    createAttachment(item, "Battery9V");
+}
+
+static EntityAI createAttachment(EntityAI item, string attachment){
+    return item.GetInventory().CreateAttachment(attachment);
+}
+
+static Weapon_Base createWeapon(GameInventory inventory, string item){
+    return Weapon_Base.Cast(createItem(inventory,item));
+}
+
+static EntityAI createItem(GameInventory inventory, string item){
+    return inventory.CreateInInventory(item);
 }
 
 static string COM_FileAttributeToString( FileAttr attr )
