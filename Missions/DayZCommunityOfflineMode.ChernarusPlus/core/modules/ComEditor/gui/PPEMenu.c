@@ -51,7 +51,7 @@ class PPEMenu extends PopupMenu{
 		m_registeredAnimations.InsertAt(m_debug, 1);
 		m_registeredAnimations.InsertAt(m_hit, 2);
 		m_registeredAnimations.InsertAt(m_epinephrine, 3);
-		SLogger.info(string.Format("Registered %1 animations",m_registeredAnimations.Count()), "PPEMenu",0);
+		SLog.i(string.Format("Registered %1 animations",m_registeredAnimations.Count()), "PPEMenu",0);
 	}
 	
 	protected void loadRegisteredAnimations(){
@@ -65,12 +65,12 @@ class PPEMenu extends PopupMenu{
 			}
 			animName += animSuperType + ")";
 			m_list_registeredAnimations.AddItem(animName,anim,0);
-			SLogger.info(string.Format("Loading registered animation: %1",anim), "",1);
+			SLog.i(string.Format("Loading registered animation: %1",anim), "",1);
 		}
 	}
 	
 	override void OnShow(){
-		SLogger.info("Resuming animations update","PPEMenu",0);
+		SLog.i("Resuming animations update","PPEMenu",0);
 		m_updateTimer.Continue();
 	}
 	
@@ -96,7 +96,7 @@ class PPEMenu extends PopupMenu{
 				break;
 				
 				default:
-				SLogger.warning("Unkown PPEAnimation state","PPEMenu");
+				SLog.w("Unkown PPEAnimation state","PPEMenu");
 				destination = m_list_pausedAnimations;
 			}
 			destination.AddItem(anim.Type().ToString(),anim,0);
@@ -104,7 +104,7 @@ class PPEMenu extends PopupMenu{
 	}
 	
 	override void OnHide(){
-		SLogger.info("Pausing animations update","PPEMenu",0);
+		SLog.i("Pausing animations update","PPEMenu",0);
 		m_updateTimer.Pause();
 	}
 	
@@ -118,27 +118,27 @@ class PPEMenu extends PopupMenu{
 		
 		switch(w){
 			case m_btn_start:
-			SLogger.info(string.Format("Starting animations : %1",selection), "PPEMenu",0);
+			SLog.i(string.Format("Starting animations : %1",selection), "PPEMenu",0);
 			PluginPPEffects.activateModifier(m_registeredAnimations[selectedRow]);
 			break;
 			
 			case m_btn_stop:
-			SLogger.info(string.Format("Stopping animations : %1",selection), "PPEMenu",0);
+			SLog.i(string.Format("Stopping animations : %1",selection), "PPEMenu",0);
 			PluginPPEffects.deactivateModifier(m_registeredAnimations[selectedRow]);
 			break;
 			
 			case m_btn_pause:
-			SLogger.info(string.Format("Pausing animations : %1",selection), "PPEMenu",0);
+			SLog.i(string.Format("Pausing animations : %1",selection), "PPEMenu",0);
 			m_registeredAnimations[selectedRow].pause();
 			break;
 			
 			case m_btn_resume:
-			SLogger.info(string.Format("Resuming animations : %1",selection), "PPEMenu",0);
+			SLog.i(string.Format("Resuming animations : %1",selection), "PPEMenu",0);
 			m_registeredAnimations[selectedRow].resume();
 			break;
 			
 			case m_btn_deactivateAll:
-			SLogger.info("Deactivating all animationss : %1", "PPEMenu",0);
+			SLog.i("Deactivating all animationss : %1", "PPEMenu",0);
 			PluginPPEffects.deactivateAllModifiers();
 			break;
 			

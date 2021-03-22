@@ -35,7 +35,7 @@ class DebugMenu extends PopupMenu{
 					updateSpecialty(s.GetCurrent());
 					break;
 				}
-				default: SLogger.warning("No slider widget name found.","DebugMenu");
+				default: SLog.w("No slider widget name found.","DebugMenu");
 			}
 		}
 		
